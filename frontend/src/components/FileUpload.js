@@ -31,7 +31,7 @@ const FileUpload = ({ setResults, setError }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-    axios.default.withCredentials = true;
+    
     try {
       const response = await axios.post("https://4demo-citation.vercel.app/api/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -40,6 +40,7 @@ const FileUpload = ({ setResults, setError }) => {
         ...response.data,
         documentName: file.name
       };
+      axios.default.withCredentials = true;
       setResults(resultsWithFilename);
       navigate('/results', { state: { results: resultsWithFilename } });
     } catch (error) {
