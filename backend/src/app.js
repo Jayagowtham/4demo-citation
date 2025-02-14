@@ -34,7 +34,7 @@ const upload = multer({
 // Enable CORS for all routes
 app.use(
   cors({
-    origin: '*', // Add your frontend Vercel domain
+    origin: ['https://4demo-citation-frontend.vercel.app'], // Add your frontend Vercel domain
     methods: ["GET", "POST"],
     allowedHeaders: ['Content-Type', 'Accept', 'Origin', 'X-Requested-With'],
     credentials: true,
