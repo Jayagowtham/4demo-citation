@@ -18,7 +18,7 @@ const FileUpload = ({ setResults, setError }) => {
       setErrorState("Please select a valid PDF file");
     }
   };
-  const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!file) {
@@ -31,9 +31,9 @@ const FileUpload = ({ setResults, setError }) => {
 
     const formData = new FormData();
     formData.append("file", file);
-
+    axios.default.withCredentials = true;
     try {
-      const response = await axios.post(`${API_URL}/api/upload`, formData, {
+      const response = await axios.post("https://4demo-citation.vercel.app/api/upload", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       const resultsWithFilename = {
