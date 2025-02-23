@@ -72,7 +72,7 @@ app.use("/api", apiRoutes(upload));
 // Add a general error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).json({ error: "Something went wrong!" });
+  res.status(500).json({ error: "Something went wrong1234!" });
 });
 
 
