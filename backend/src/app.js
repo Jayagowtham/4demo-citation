@@ -7,16 +7,13 @@ const apiRoutes = require("./routes/api");
 
 const app = express();
 
-// Ensure uploads folder exists
-const uploadDir = path.join(__dirname, "../uploads/");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
+// Temporary directory for file storage on Vercel
+const uploadDir = "/tmp"; // Vercel allows writing only in /tmp/
 
 // Configure multer for file uploads
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadDir);
+    cb(null, uploadDir); // Store files in /tmp/
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
